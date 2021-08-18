@@ -1,0 +1,49 @@
+<%= form_with(model: note, local: true) do |form| %>
+  <% if note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+      <ul>
+      <% note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: 'form-label' %>
+      <%= form.text_area :description, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :quantity, class: 'form-label' %>
+      <%= form.number_field :quantity, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :due_date, class: 'form-label' %>
+      <%= form.datetime_select :due_date, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if note.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', note, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if note.persisted? %>
+      <%= link_to "Cancel", note, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", notes_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>
