@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
   resources :notes
   use_doorkeeper
   get '/privacy', to: 'home#privacy'
