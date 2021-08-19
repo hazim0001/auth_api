@@ -1,3 +1,4 @@
+require 'byebug'
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -16,6 +17,7 @@ class User < ApplicationRecord
 
   class << self
     def authenticate(email, password)
+      # byebug
       user = User.find_for_authentication(email: email)
       user.try(:valid_password?, password) ? user : nil
     end
